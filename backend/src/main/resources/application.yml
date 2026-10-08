@@ -1,45 +1,45 @@
 server:
-  port: 8080
+  port: ${SERVER_PORT:8080}
   servlet:
-    context-path: /api
+    context-path: ${SERVER_SERVLET_CONTEXT_PATH:/api}
 
 spring:
   application:
-    name: digital-library-backend
+    name: ${SPRING_APPLICATION_NAME:digital-library-backend}
   datasource:
-    url: jdbc:h2:mem:librarydb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    driverClassName: org.h2.Driver
-    username: sa
-    password: 
+    url: ${SPRING_DATASOURCE_URL:jdbc:h2:mem:librarydb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}
+    driverClassName: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME:org.h2.Driver}
+    username: ${SPRING_DATASOURCE_USERNAME:sa}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
   h2:
     console:
-      enabled: true
-      path: /h2-console
+      enabled: ${SPRING_H2_CONSOLE_ENABLED:true}
+      path: ${SPRING_H2_CONSOLE_PATH:/h2-console}
       settings:
-        web-allow-others: true
+        web-allow-others: ${SPRING_H2_CONSOLE_SETTINGS_WEB_ALLOW_OTHERS:true}
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: ${SPRING_JPA_DATABASE_PLATFORM:org.hibernate.dialect.H2Dialect}
     hibernate:
-      ddl-auto: create-drop
-    show-sql: true
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:create-drop}
+    show-sql: ${SPRING_JPA_SHOW_SQL:true}
     properties:
       hibernate:
-        format_sql: true
+        format_sql: ${SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL:true}
 
 app:
   jwt:
-    secret: 9a6e8b12c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1
-    expiration-ms: 86400000 # 24 hours
+    secret: ${JWT_SECRET:9a6e8b12c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000} # 24 hours
   library:
-    fine-per-day: 10.0
-    max-books-per-student: 5
-    max-loan-days: 14
-    max-renewals: 2
-    reservation-expiry-hours: 48
-    store-tax-percent: 5.0
-    store-shipping-fee: 40.0
+    fine-per-day: ${LIBRARY_FINE_PER_DAY:10.0}
+    max-books-per-student: ${LIBRARY_MAX_BOOKS_PER_STUDENT:5}
+    max-loan-days: ${LIBRARY_MAX_LOAN_DAYS:14}
+    max-renewals: ${LIBRARY_MAX_RENEWALS:2}
+    reservation-expiry-hours: ${LIBRARY_RESERVATION_EXPIRY_HOURS:48}
+    store-tax-percent: ${LIBRARY_STORE_TAX_PERCENT:5.0}
+    store-shipping-fee: ${LIBRARY_STORE_SHIPPING_FEE:40.0}
 
 logging:
   level:
-    root: INFO
-    com.digitalpass: DEBUG
+    root: ${LOGGING_LEVEL_ROOT:INFO}
+    com.digitalpass: ${LOGGING_LEVEL_APP:DEBUG}
